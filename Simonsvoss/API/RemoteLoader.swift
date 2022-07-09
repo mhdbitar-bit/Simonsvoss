@@ -8,14 +8,6 @@
 import Foundation
 
 
-
-struct Building: Equatable {
-    let id: UUID
-    let shortCut: String
-    let name: String
-    let description: String
-}
-
 struct Lock: Equatable {
     let id: UUID
     let buildingId: UUID

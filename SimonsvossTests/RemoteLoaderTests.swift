@@ -243,6 +243,25 @@ final class RemoteLoaderTests: XCTestCase {
         })
     }
     
+    func test_load_deliversSuccessWithItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+        
+        let buildin1 = makeBuilding(id: UUID(), shortCut: "a shortCut", name: "a name", description: "a description")
+        
+        let lock1 = makeLock(id: UUID(), buildingId: UUID(), type: "a type", name: "a name", description: "a description", serialNumber: "a serial number", floor: "a floor", roomNumber: "a room number")
+        
+        let group1 = makeGroup(id: UUID(), name: "a name", description: "a description")
+        
+        let media1 = makeMedia(id: UUID(), groupId: UUID(), type: "a type", owner: "an owner", description: "a description", serialNumber: "a serial number")
+        
+        let item = makeItem(building: buildin1, lock: lock1, group: group1, media: media1)
+        
+        expect(sut, toCompleteWith: .success(item.model), when: {
+            let json = makeItemsJSON(item.json)
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = anyURL(), file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteLoader, client: HTTPClientSpy) {
@@ -276,79 +295,87 @@ final class RemoteLoaderTests: XCTestCase {
         waitForExpectations(timeout: 0.1)
     }
     
-//    private func makeBuilding(id: UUID, shortCut: String, name: String, description: String) -> Building {
-//        return Building(
-//            id: id,
-//            shortCut: shortCut,
-//            name: name,
-//            description: description
-//        )
-//    }
-//
-//    private func makeLock(id: UUID, buildingId: UUID, type: String, name: String, description: String?, serialNumber: String, floor: String, roomNumber: String) -> Lock {
-//        return Lock(
-//            id: id,
-//            buildingId: buildingId,
-//            type: type,
-//            name: name,
-//            description: description,
-//            serialNumber: serialNumber,
-//            floor: floor,
-//            roomNumber: roomNumber
-//        )
-//    }
-//
-//    private func makeGroup(id: UUID, name: String, description: String?) -> Group {
-//        return Group(
-//            id: id,
-//            name: name,
-//            description: description
-//        )
-//    }
-//
-//    private func makeMedia(id: UUID, groupId: UUID, type: String, owner: String, description: String?, serialNumber: String) -> Media {
-//        return Media(
-//            id: id,
-//            groupId: groupId,
-//            type: type,
-//            owner: owner,
-//            description: description,
-//            serialNumber: serialNumber
-//        )
-//    }
+    private func makeBuilding(id: UUID, shortCut: String, name: String, description: String) -> Building {
+        return Building(
+            id: id,
+            shortCut: shortCut,
+            name: name,
+            description: description
+        )
+    }
+
+    private func makeLock(id: UUID, buildingId: UUID, type: String, name: String, description: String, serialNumber: String, floor: String, roomNumber: String) -> Lock {
+        return Lock(
+            id: id,
+            buildingId: buildingId,
+            type: type,
+            name: name,
+            description: description,
+            serialNumber: serialNumber,
+            floor: floor,
+            roomNumber: roomNumber
+        )
+    }
+
+    private func makeGroup(id: UUID, name: String, description: String) -> Group {
+        return Group(
+            id: id,
+            name: name,
+            description: description
+        )
+    }
+
+    private func makeMedia(id: UUID, groupId: UUID, type: String, owner: String, description: String, serialNumber: String) -> Media {
+        return Media(
+            id: id,
+            groupId: groupId,
+            type: type,
+            owner: owner,
+            description: description,
+            serialNumber: serialNumber
+        )
+    }
     
     private func makeItem(building: Building, lock: Lock, group: Group, media: Media) -> (model: Item, json: [String: Any]) {
         
-        let json: [String: Any] = [
-            "buildings": [[
-                "id": building.id,
-                "shortCut": building.shortCut,
-                "name": building.name,
-                "description": building.description
-            ]],
-            "locks": [[
-                "id": lock.id,
-                "buildingId": lock.buildingId,
-                "type": lock.type,
-                "name": lock.name,
-                "description": lock.description as Any,
-                "serialNumber": lock.serialNumber,
-                "floor": lock.floor,
-                "roomNumber": lock.roomNumber
-            ].compactMap { $0 }],
-            "groups": [[
-                "id": group.id,
-                "name": group.name,
-                "description": group.description as Any
-            ].compactMap { $0 }],
-            "media": [[
-                "id": media.id,
-                "groupId": media.groupId,
-                "type": media.type,
-                "owner": media.owner,
-                "description": media.description as Any,
-                "serialNumber": media.serialNumber
-            ].compactMap { $0 }]
+        let json = [
+            "buildings": [
+                [
+                    "id": building.id.uuidString,
+                    "shortCut": building.shortCut,
+                    "name": building.name,
+                    "description": building.description
+                ]
+            ],
+            "locks": [
+                [
+                    "id": lock.id.uuidString,
+                    "buildingId": lock.buildingId.uuidString,
+                    "type": lock.type,
+                    "name": lock.name,
+                    "description": lock.description,
+                    "serialNumber": lock.serialNumber,
+                    "floor": lock.floor,
+                    "roomNumber": lock.roomNumber
+                ]
+            ],
+            "groups": [
+                [
+                    "id": group.id.uuidString,
+                    "name": group.name,
+                    "description": group.description
+                ]
+            ],
+            "media": [
+                [
+                    "id": media.id.uuidString,
+                    "groupId": media.groupId.uuidString,
+                    "type": media.type,
+                    "owner": media.owner,
+                    "description": media.description,
+                    "serialNumber": media.serialNumber
+                ]
+            ]
         ]
         
         let item = Item(buildings: [building], locks: [lock], groups: [group], media: [media])

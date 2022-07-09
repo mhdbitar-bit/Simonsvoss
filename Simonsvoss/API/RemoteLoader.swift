@@ -7,12 +7,7 @@
 
 import Foundation
 
-struct Item: Equatable {
-    let buildings: [Building]
-    let locks: [Lock]
-    let groups: [Group]
-    let media: [Media]
-}
+
 
 struct Building: Equatable {
     let id: UUID

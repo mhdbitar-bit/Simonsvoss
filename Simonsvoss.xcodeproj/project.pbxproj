@@ -20,6 +20,7 @@
 		4C6C54952879A0C0009DABC8 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54942879A0C0009DABC8 /* HTTPClientSpy.swift */; };
 		4C6C54972879A135009DABC8 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54962879A135009DABC8 /* RemoteLoader.swift */; };
 		4C6C54992879A1AF009DABC8 /* ItemMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54982879A1AF009DABC8 /* ItemMapper.swift */; };
+		4C6C549C2879A1EE009DABC8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C549B2879A1EE009DABC8 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4C6C54942879A0C0009DABC8 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		4C6C54962879A135009DABC8 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 		4C6C54982879A1AF009DABC8 /* ItemMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMapper.swift; sourceTree = "<group>"; };
+		4C6C549B2879A1EE009DABC8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		4C6C545028795C7A009DABC8 /* Simonsvoss */ = {
 			isa = PBXGroup;
 			children = (
+				4C6C549A2879A1DE009DABC8 /* Domain */,
 				4C6C548E28796A8A009DABC8 /* API */,
 				4C6C545128795C7A009DABC8 /* AppDelegate.swift */,
 				4C6C545328795C7A009DABC8 /* SceneDelegate.swift */,
@@ -137,6 +140,14 @@
 				4C6C5488287969AE009DABC8 /* URLSessionHTTPClient.swift */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		4C6C549A2879A1DE009DABC8 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				4C6C549B2879A1EE009DABC8 /* Item.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +255,7 @@
 				4C6C548B287969E6009DABC8 /* HTTPClient.swift in Sources */,
 				4C6C545428795C7A009DABC8 /* SceneDelegate.swift in Sources */,
 				4C6C5489287969AE009DABC8 /* URLSessionHTTPClient.swift in Sources */,
+				4C6C549C2879A1EE009DABC8 /* Item.swift in Sources */,
 				4C6C54972879A135009DABC8 /* RemoteLoader.swift in Sources */,
 				4C6C54992879A1AF009DABC8 /* ItemMapper.swift in Sources */,
 			);

@@ -84,9 +84,8 @@
 		4C6C545028795C7A009DABC8 /* Simonsvoss */ = {
 			isa = PBXGroup;
 			children = (
+				4C6C548E28796A8A009DABC8 /* API */,
 				4C6C545128795C7A009DABC8 /* AppDelegate.swift */,
-				4C6C5488287969AE009DABC8 /* URLSessionHTTPClient.swift */,
-				4C6C548A287969E6009DABC8 /* HTTPClient.swift */,
 				4C6C545328795C7A009DABC8 /* SceneDelegate.swift */,
 				4C6C545A28795C7C009DABC8 /* Assets.xcassets */,
 				4C6C545C28795C7C009DABC8 /* LaunchScreen.storyboard */,
@@ -112,6 +111,23 @@
 				4C6C548C28796A55009DABC8 /* SharedHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4C6C548E28796A8A009DABC8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4C6C548F28796A94009DABC8 /* Infrastructure */,
+				4C6C548A287969E6009DABC8 /* HTTPClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		4C6C548F28796A94009DABC8 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				4C6C5488287969AE009DABC8 /* URLSessionHTTPClient.swift */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

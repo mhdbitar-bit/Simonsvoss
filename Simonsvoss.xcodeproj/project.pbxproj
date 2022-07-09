@@ -17,6 +17,7 @@
 		4C6C548B287969E6009DABC8 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C548A287969E6009DABC8 /* HTTPClient.swift */; };
 		4C6C548D28796A55009DABC8 /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C548C28796A55009DABC8 /* SharedHelpers.swift */; };
 		4C6C549328796B8F009DABC8 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C549228796B8F009DABC8 /* RemoteLoaderTests.swift */; };
+		4C6C54952879A0C0009DABC8 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54942879A0C0009DABC8 /* HTTPClientSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		4C6C548A287969E6009DABC8 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		4C6C548C28796A55009DABC8 /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
 		4C6C549228796B8F009DABC8 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
+		4C6C54942879A0C0009DABC8 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				4C6C54862879618C009DABC8 /* URLProtocolStub.swift */,
 				4C6C548C28796A55009DABC8 /* SharedHelpers.swift */,
+				4C6C54942879A0C0009DABC8 /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				4C6C548428795F58009DABC8 /* URLSessionHTTPClientTests.swift in Sources */,
 				4C6C54872879618C009DABC8 /* URLProtocolStub.swift in Sources */,
 				4C6C548D28796A55009DABC8 /* SharedHelpers.swift in Sources */,
+				4C6C54952879A0C0009DABC8 /* HTTPClientSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

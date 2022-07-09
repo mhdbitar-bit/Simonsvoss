@@ -162,8 +162,13 @@ final class RemoteLoader {
     func load(completion: @escaping (Result<Item, Error>) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case .success:
-                completion(.failure(.invalidData))
+            case let (.success((data, response))):
+                if let item = try? ItemMapper.map(data, from: response) {
+                    completion(.success(item))
+                } else {
+                    completion(.failure(.invalidData))
+                }
+                
             case .failure:
                 completion(.failure(.connecitivy))
             }
@@ -212,7 +217,7 @@ final class RemoteLoaderTests: XCTestCase {
         
         samples.enumerated().forEach { index, code in
             expect(sut, toCompleteWith: .failure(.invalidData)) {
-                let json = makeItemsJSON([])
+                let json = makeItemsJSON([:])
                 client.complete(withStatusCode: code, data: json, at: index)
             }
         }
@@ -234,7 +239,7 @@ final class RemoteLoaderTests: XCTestCase {
         let sut = RemoteLoader(url: url, client: client)
         return (sut, client)
     }
-    func expect(_ sut: RemoteLoader, toCompleteWith expectedResult: Result<[Item], RemoteLoader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: RemoteLoader, toCompleteWith expectedResult: Result<Item, RemoteLoader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
 
         sut.load { receivedResult in
@@ -279,7 +284,7 @@ final class RemoteLoaderTests: XCTestCase {
         }
     }
     
-    private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
+    private func makeItemsJSON(_ items: [String: Any]) -> Data {
         return try! JSONSerialization.data(withJSONObject: items)
     }
 }

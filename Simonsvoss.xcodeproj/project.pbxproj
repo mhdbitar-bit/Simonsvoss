@@ -11,7 +11,6 @@
 		4C6C545428795C7A009DABC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C545328795C7A009DABC8 /* SceneDelegate.swift */; };
 		4C6C545B28795C7C009DABC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C545A28795C7C009DABC8 /* Assets.xcassets */; };
 		4C6C545E28795C7C009DABC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C545C28795C7C009DABC8 /* LaunchScreen.storyboard */; };
-		4C6C548228795E5F009DABC8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C548128795E5F009DABC8 /* Item.swift */; };
 		4C6C548428795F58009DABC8 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C548328795F58009DABC8 /* URLSessionHTTPClientTests.swift */; };
 		4C6C54872879618C009DABC8 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54862879618C009DABC8 /* URLProtocolStub.swift */; };
 		4C6C5489287969AE009DABC8 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C5488287969AE009DABC8 /* URLSessionHTTPClient.swift */; };
@@ -38,7 +37,6 @@
 		4C6C545D28795C7C009DABC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C6C545F28795C7C009DABC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6C546428795C7D009DABC8 /* SimonsvossTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimonsvossTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C6C548128795E5F009DABC8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4C6C548328795F58009DABC8 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		4C6C54862879618C009DABC8 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		4C6C5488287969AE009DABC8 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 				4C6C545A28795C7C009DABC8 /* Assets.xcassets */,
 				4C6C545C28795C7C009DABC8 /* LaunchScreen.storyboard */,
 				4C6C545F28795C7C009DABC8 /* Info.plist */,
-				4C6C548128795E5F009DABC8 /* Item.swift */,
 			);
 			path = Simonsvoss;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 			files = (
 				4C6C545228795C7A009DABC8 /* AppDelegate.swift in Sources */,
 				4C6C548B287969E6009DABC8 /* HTTPClient.swift in Sources */,
-				4C6C548228795E5F009DABC8 /* Item.swift in Sources */,
 				4C6C545428795C7A009DABC8 /* SceneDelegate.swift in Sources */,
 				4C6C5489287969AE009DABC8 /* URLSessionHTTPClient.swift in Sources */,
 			);

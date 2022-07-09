@@ -7,15 +7,6 @@
 
 import Foundation
 
-struct Media: Equatable {
-    let id: UUID
-    let groupId: UUID
-    let type: String
-    let owner: String
-    let description: String
-    let serialNumber: String
-}
-
 final class RemoteLoader {
     private let url: URL
     private let client: HTTPClient

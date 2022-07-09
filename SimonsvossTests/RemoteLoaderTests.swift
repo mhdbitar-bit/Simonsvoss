@@ -55,26 +55,10 @@ final class RemoteLoaderTests: XCTestCase {
     func test_load_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        let exp = expectation(description: "Wait for load completion")
-        
-        let expecredError: RemoteLoader.Error = .connecitivy
-        
-        sut.load { receivedResult in
-            switch receivedResult {
-            case let (.failure(receivedError)):
-                XCTAssertEqual(receivedError, expecredError)
-                
-            default:
-                XCTFail("Expected failure got \(receivedResult) instead")
-            }
-            
-            exp.fulfill()
+        expect(sut, toCompleteWith: .failure(.connecitivy)) {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError)
         }
-        
-        let clientError = NSError(domain: "Test", code: 0)
-        client.complete(with: clientError)
-        
-        wait(for: [exp], timeout: 1.0)
     }
     
     func test_load_deliversInvalidDataErrorOnNon200HTTPResponse() {

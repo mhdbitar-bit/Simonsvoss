@@ -20,33 +20,35 @@ final class RemoteLoader {
 final class RemoteLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
-        let client = HTTPClientSpy()
+        let (_, client) = makeSUT()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
-        let url = anyURL()
-        let client = HTTPClientSpy()
-        let sut = RemoteLoader(url: url, client: client)
+        let (sut, client) = makeSUT()
         
         sut.load { _ in }
         
-        XCTAssertEqual(client.requestedURLs, [url])
+        XCTAssertEqual(client.requestedURLs, [anyURL()])
     }
     
     func test_loadTwice_requestsDataFromURLTwice() {
-        let url = anyURL()
-        let client = HTTPClientSpy()
-        let sut = RemoteLoader(url: url, client: client)
+        let (sut, client) = makeSUT()
         
         sut.load { _ in }
         sut.load { _ in }
         
-        XCTAssertEqual(client.requestedURLs, [url, url])
+        XCTAssertEqual(client.requestedURLs, [anyURL(), anyURL()])
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(url: URL = anyURL(), file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteLoader, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
+        let sut = RemoteLoader(url: url, client: client)
+        return (sut, client)
+    }
     
     class HTTPClientSpy: HTTPClient {
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()

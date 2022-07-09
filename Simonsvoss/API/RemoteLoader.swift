@@ -7,12 +7,6 @@
 
 import Foundation
 
-struct Group: Equatable {
-    let id: UUID
-    let name: String
-    let description: String
-}
-
 struct Media: Equatable {
     let id: UUID
     let groupId: UUID

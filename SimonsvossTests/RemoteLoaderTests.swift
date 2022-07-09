@@ -35,6 +35,17 @@ final class RemoteLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
+    func test_loadTwice_requestsDataFromURLTwice() {
+        let url = anyURL()
+        let client = HTTPClientSpy()
+        let sut = RemoteLoader(url: url, client: client)
+        
+        sut.load { _ in }
+        sut.load { _ in }
+        
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
     // MARK: - Helpers
     
     class HTTPClientSpy: HTTPClient {

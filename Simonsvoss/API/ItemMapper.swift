@@ -102,8 +102,10 @@ final class ItemMapper {
         case invalidData
     }
     
+    private static var OK_200: Int { 200 }
+    
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> Item {
-        guard response.statusCode == 200, let root = try? JSONDecoder().decode(RemoteItem.self, from: data) else {
+        guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(RemoteItem.self, from: data) else {
             throw Error.invalidData
         }
         

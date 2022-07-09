@@ -4,6 +4,10 @@ import XCTest
 final class RemoteLoader {
     private let url: URL
     private let client: HTTPClient
+    
+    enum Error: Swift.Error {
+        case connecitivy
+    }
 
     init(url: URL, client: HTTPClient) {
         self.url = url
@@ -12,7 +16,7 @@ final class RemoteLoader {
 
     func load(completion: @escaping (Result<Item, Error>) -> Void) {
         client.get(from: url) { result in
-            completion(.failure(NSError()))
+            completion(.failure(.connecitivy))
         }
     }
 }
@@ -42,6 +46,31 @@ final class RemoteLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [anyURL(), anyURL()])
     }
     
+    func test_load_deliversErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        
+        let exp = expectation(description: "Wait for load completion")
+        
+        let expecredError: RemoteLoader.Error = .connecitivy
+        
+        sut.load { receivedResult in
+            switch receivedResult {
+            case let (.failure(receivedError)):
+                XCTAssertEqual(receivedError, expecredError)
+                
+            default:
+                XCTFail("Expected failure got \(receivedResult) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        let clientError = NSError(domain: "Test", code: 0)
+        client.complete(with: clientError)
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = anyURL(), file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteLoader, client: HTTPClientSpy) {
@@ -59,6 +88,10 @@ final class RemoteLoaderTests: XCTestCase {
         
         func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
             messages.append((url, completion))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
         }
     }
 }

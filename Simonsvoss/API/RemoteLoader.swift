@@ -11,6 +11,8 @@ final class RemoteLoader {
     private let url: URL
     private let client: HTTPClient
     
+    typealias Result = Swift.Result<Item, Error>
+    
     enum Error: Swift.Error {
         case connecitivy
         case invalidData
@@ -21,19 +23,25 @@ final class RemoteLoader {
         self.client = client
     }
 
-    func load(completion: @escaping (Result<Item, Error>) -> Void) {
-        client.get(from: url) { result in
+    func load(completion: @escaping (Result) -> Void) {
+        client.get(from: url) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case let (.success((data, response))):
-                if let item = try? ItemMapper.map(data, from: response) {
-                    completion(.success(item))
-                } else {
-                    completion(.failure(.invalidData))
-                }
+                completion(self.map(data, from: response))
                 
             case .failure:
                 completion(.failure(.connecitivy))
             }
+        }
+    }
+    
+    private func map(_ data: Data, from response: HTTPURLResponse) -> Result {
+        do {
+            return .success(try ItemMapper.map(data, from: response))
+        } catch {
+            return .failure(Error.invalidData)
         }
     }
 }

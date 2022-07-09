@@ -25,6 +25,7 @@
 		4C6C54A02879A23B009DABC8 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C549F2879A23B009DABC8 /* Lock.swift */; };
 		4C6C54A22879A25B009DABC8 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54A12879A25B009DABC8 /* Group.swift */; };
 		4C6C54A42879A27E009DABC8 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54A32879A27E009DABC8 /* Media.swift */; };
+		4C6C54A62879A351009DABC8 /* XCTestCase+MemoryLeackTrackingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54A52879A351009DABC8 /* XCTestCase+MemoryLeackTrackingHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4C6C549F2879A23B009DABC8 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
 		4C6C54A12879A25B009DABC8 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		4C6C54A32879A27E009DABC8 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		4C6C54A52879A351009DABC8 /* XCTestCase+MemoryLeackTrackingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeackTrackingHelper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				4C6C54862879618C009DABC8 /* URLProtocolStub.swift */,
 				4C6C548C28796A55009DABC8 /* SharedHelpers.swift */,
 				4C6C54942879A0C0009DABC8 /* HTTPClientSpy.swift */,
+				4C6C54A52879A351009DABC8 /* XCTestCase+MemoryLeackTrackingHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				4C6C549328796B8F009DABC8 /* RemoteLoaderTests.swift in Sources */,
 				4C6C548428795F58009DABC8 /* URLSessionHTTPClientTests.swift in Sources */,
 				4C6C54872879618C009DABC8 /* URLProtocolStub.swift in Sources */,
+				4C6C54A62879A351009DABC8 /* XCTestCase+MemoryLeackTrackingHelper.swift in Sources */,
 				4C6C548D28796A55009DABC8 /* SharedHelpers.swift in Sources */,
 				4C6C54952879A0C0009DABC8 /* HTTPClientSpy.swift in Sources */,
 			);

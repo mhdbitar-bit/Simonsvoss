@@ -38,4 +38,30 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         URLProtocolStub.stopInterceptingRequests()
     }
+    
+    func test_getFromURL_failsOnRequestError() {
+        URLProtocolStub.startInterceptingRequests()
+        
+        let url = URL(string: "http://any-url.com")!
+        let sut = URLSessionHTTPClient(session: .shared)
+        let requestError = NSError(domain: "any error", code: 0)
+        
+        let exp = expectation(description: "Wait for request")
+        
+        
+        URLProtocolStub.stub(data: nil, response: nil, error: requestError)
+        
+        var receivedResult: HTTPClientResult!
+        
+        sut.get(from: url) { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        
+        XCTAssertNotNil(receivedResult)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        URLProtocolStub.stopInterceptingRequests()
+    }
 }

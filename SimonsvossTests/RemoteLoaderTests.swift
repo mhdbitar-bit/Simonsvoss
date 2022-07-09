@@ -46,7 +46,7 @@ final class RemoteLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [anyURL(), anyURL()])
     }
     
-    func test_load_deliversErrorOnClientError() {
+    func test_load_deliversConnectivityErrorOnClientError() {
         let (sut, client) = makeSUT()
         
         let exp = expectation(description: "Wait for load completion")
@@ -93,5 +93,9 @@ final class RemoteLoaderTests: XCTestCase {
         func complete(with error: Error, at index: Int = 0) {
             messages[index].completion(.failure(error))
         }
+    }
+    
+    private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
+        return try! JSONSerialization.data(withJSONObject: items)
     }
 }

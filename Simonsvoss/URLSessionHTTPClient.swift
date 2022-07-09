@@ -7,9 +7,7 @@
 
 import Foundation
 
-typealias HTTPClientResult = Result<(Data, HTTPURLResponse), Error>
-
-class URLSessionHTTPClient {
+class URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
     
     private struct UnexpectedValuesRepresentation: Error {}

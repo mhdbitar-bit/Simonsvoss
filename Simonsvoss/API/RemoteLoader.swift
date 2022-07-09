@@ -7,18 +7,6 @@
 
 import Foundation
 
-
-struct Lock: Equatable {
-    let id: UUID
-    let buildingId: UUID
-    let type: String
-    let name: String
-    let description: String
-    let serialNumber: String
-    let floor: String
-    let roomNumber: String
-}
-
 struct Group: Equatable {
     let id: UUID
     let name: String

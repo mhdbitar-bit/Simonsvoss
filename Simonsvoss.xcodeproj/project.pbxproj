@@ -12,6 +12,8 @@
 		4C6C545B28795C7C009DABC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C545A28795C7C009DABC8 /* Assets.xcassets */; };
 		4C6C545E28795C7C009DABC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C545C28795C7C009DABC8 /* LaunchScreen.storyboard */; };
 		4C6C548228795E5F009DABC8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C548128795E5F009DABC8 /* Item.swift */; };
+		4C6C548428795F58009DABC8 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C548328795F58009DABC8 /* URLSessionHTTPClientTests.swift */; };
+		4C6C54872879618C009DABC8 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C54862879618C009DABC8 /* URLProtocolStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		4C6C545F28795C7C009DABC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6C546428795C7D009DABC8 /* SimonsvossTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimonsvossTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C6C548128795E5F009DABC8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		4C6C548328795F58009DABC8 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		4C6C54862879618C009DABC8 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +91,18 @@
 		4C6C546728795C7D009DABC8 /* SimonsvossTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C6C54852879617C009DABC8 /* Helpers */,
+				4C6C548328795F58009DABC8 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = SimonsvossTests;
+			sourceTree = "<group>";
+		};
+		4C6C54852879617C009DABC8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C6C54862879618C009DABC8 /* URLProtocolStub.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +158,7 @@
 					};
 					4C6C546328795C7D009DABC8 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 						TestTargetID = 4C6C544D28795C7A009DABC8;
 					};
 				};
@@ -201,6 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C6C548428795F58009DABC8 /* URLSessionHTTPClientTests.swift in Sources */,
+				4C6C54872879618C009DABC8 /* URLProtocolStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,15 +416,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QU3CT6V6H6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitar.SimonsvossTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Simonsvoss.app/Simonsvoss";
@@ -419,11 +443,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QU3CT6V6H6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitar.SimonsvossTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -232,6 +232,17 @@ final class RemoteLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversSuccessWithNoItemsOn200HTTPResponseWithEmptyJSONList() {
+        let (sut, client) = makeSUT()
+        
+        let item = Item(buildings: [], locks: [], groups: [], media: [])
+        
+        expect(sut, toCompleteWith: .success(item), when: {
+            let emptyListJSON = makeItemsJSON(["buildings": [], "locks": [], "groups": [], "media": []])
+            client.complete(withStatusCode: 200, data: emptyListJSON)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = anyURL(), file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteLoader, client: HTTPClientSpy) {
@@ -244,10 +255,17 @@ final class RemoteLoaderTests: XCTestCase {
 
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
-            case let (.failure(receivedError as RemoteLoader.Error), .failure(expectedError)):
+            case let (.success(receivedItems), .success(expectedItems)):
+                XCTAssertEqual(receivedItems.buildings, expectedItems.buildings, file: file, line: line)
+                XCTAssertEqual(receivedItems.locks, expectedItems.locks, file: file, line: line)
+                XCTAssertEqual(receivedItems.groups, expectedItems.groups, file: file, line: line)
+                XCTAssertEqual(receivedItems.media, expectedItems.media, file: file, line: line)
+                
+            case let (.failure(receivedError), .failure(expectedError)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                
             default:
-                XCTFail("Expected failure got \(receivedResult) instead")
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
             }
             
             exp.fulfill()
@@ -256,6 +274,86 @@ final class RemoteLoaderTests: XCTestCase {
         action()
         
         waitForExpectations(timeout: 0.1)
+    }
+    
+//    private func makeBuilding(id: UUID, shortCut: String, name: String, description: String) -> Building {
+//        return Building(
+//            id: id,
+//            shortCut: shortCut,
+//            name: name,
+//            description: description
+//        )
+//    }
+//
+//    private func makeLock(id: UUID, buildingId: UUID, type: String, name: String, description: String?, serialNumber: String, floor: String, roomNumber: String) -> Lock {
+//        return Lock(
+//            id: id,
+//            buildingId: buildingId,
+//            type: type,
+//            name: name,
+//            description: description,
+//            serialNumber: serialNumber,
+//            floor: floor,
+//            roomNumber: roomNumber
+//        )
+//    }
+//
+//    private func makeGroup(id: UUID, name: String, description: String?) -> Group {
+//        return Group(
+//            id: id,
+//            name: name,
+//            description: description
+//        )
+//    }
+//
+//    private func makeMedia(id: UUID, groupId: UUID, type: String, owner: String, description: String?, serialNumber: String) -> Media {
+//        return Media(
+//            id: id,
+//            groupId: groupId,
+//            type: type,
+//            owner: owner,
+//            description: description,
+//            serialNumber: serialNumber
+//        )
+//    }
+    
+    private func makeItem(building: Building, lock: Lock, group: Group, media: Media) -> (model: Item, json: [String: Any]) {
+        
+        let json: [String: Any] = [
+            "buildings": [[
+                "id": building.id,
+                "shortCut": building.shortCut,
+                "name": building.name,
+                "description": building.description
+            ]],
+            "locks": [[
+                "id": lock.id,
+                "buildingId": lock.buildingId,
+                "type": lock.type,
+                "name": lock.name,
+                "description": lock.description as Any,
+                "serialNumber": lock.serialNumber,
+                "floor": lock.floor,
+                "roomNumber": lock.roomNumber
+            ].compactMap { $0 }],
+            "groups": [[
+                "id": group.id,
+                "name": group.name,
+                "description": group.description as Any
+            ].compactMap { $0 }],
+            "media": [[
+                "id": media.id,
+                "groupId": media.groupId,
+                "type": media.type,
+                "owner": media.owner,
+                "description": media.description as Any,
+                "serialNumber": media.serialNumber
+            ].compactMap { $0 }]
+        ]
+        
+        let item = Item(buildings: [building], locks: [lock], groups: [group], media: [media])
+        
+        return (item, json)
     }
     
     class HTTPClientSpy: HTTPClient {

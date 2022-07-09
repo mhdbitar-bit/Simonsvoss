@@ -5,6 +5,7 @@
 //  Created by Mohammad Bitar on 7/9/22.
 //
 
+@testable import Simonsvoss
 import Foundation
 
 func anyURL() -> URL {

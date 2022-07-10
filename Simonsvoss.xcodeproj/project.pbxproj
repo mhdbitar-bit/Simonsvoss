@@ -34,6 +34,7 @@
 		4CC2E68B287A931600BB1810 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68A287A931600BB1810 /* ItemViewModel.swift */; };
 		4CC2E68E287AA21100BB1810 /* ItemCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68D287AA21100BB1810 /* ItemCellController.swift */; };
 		4CC2E691287AA3CE00BB1810 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E690287AA3CE00BB1810 /* Alertable.swift */; };
+		4CC2E693287AA50D00BB1810 /* ItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E692287AA50D00BB1810 /* ItemLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		4CC2E68A287A931600BB1810 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		4CC2E68D287AA21100BB1810 /* ItemCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellController.swift; sourceTree = "<group>"; };
 		4CC2E690287AA3CE00BB1810 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		4CC2E692287AA50D00BB1810 /* ItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				4C6C548A287969E6009DABC8 /* HTTPClient.swift */,
 				4C6C54962879A135009DABC8 /* RemoteLoader.swift */,
 				4C6C54982879A1AF009DABC8 /* ItemMapper.swift */,
+				4CC2E692287AA50D00BB1810 /* ItemLoader.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				4C6C548B287969E6009DABC8 /* HTTPClient.swift in Sources */,
 				4CC2E67E287A8EEF00BB1810 /* ListViewController.swift in Sources */,
 				4C6C545428795C7A009DABC8 /* SceneDelegate.swift in Sources */,
+				4CC2E693287AA50D00BB1810 /* ItemLoader.swift in Sources */,
 				4CC2E688287A905A00BB1810 /* ItemTableViewCell.swift in Sources */,
 				4CC2E68E287AA21100BB1810 /* ItemCellController.swift in Sources */,
 				4C6C54A22879A25B009DABC8 /* Group.swift in Sources */,

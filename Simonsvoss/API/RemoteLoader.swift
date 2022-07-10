@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class RemoteLoader {
+final class RemoteLoader: ItemLoader {
+    typealias Result = ItemLoader.Result
+    
     private let url: URL
     private let client: HTTPClient
-    
-    typealias Result = Swift.Result<Item, Error>
     
     enum Error: Swift.Error {
         case connecitivy
@@ -32,7 +32,7 @@ final class RemoteLoader {
                 completion(self.map(data, from: response))
                 
             case .failure:
-                completion(.failure(.connecitivy))
+                completion(.failure(Error.connecitivy))
             }
         }
     }

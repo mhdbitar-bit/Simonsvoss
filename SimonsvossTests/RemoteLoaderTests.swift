@@ -96,7 +96,9 @@ final class RemoteLoaderTests: XCTestCase {
         trackForMemoryLeacks(sut, file: file, line: line)
         return (sut, client)
     }
-    func expect(_ sut: RemoteLoader, toCompleteWith expectedResult: Result<Item, RemoteLoader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    
+    func expect(_ sut: RemoteLoader, toCompleteWith expectedResult:
+                Swift.Result<Item, RemoteLoader.Error>, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
 
         sut.load { receivedResult in
@@ -108,7 +110,7 @@ final class RemoteLoaderTests: XCTestCase {
                 XCTAssertEqual(receivedItems.media, expectedItems.media, file: file, line: line)
                 
             case let (.failure(receivedError), .failure(expectedError)):
-                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                XCTAssertEqual(receivedError as! RemoteLoader.Error, expectedError, file: file, line: line)
                 
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)

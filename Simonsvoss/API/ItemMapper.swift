@@ -13,7 +13,7 @@ final class ItemMapper {
         private let locks: [RemoteLock]
         private let groups: [RemoteGroup]
         private let media: [RemoteMedia]
-        
+
         var item: Item {
             return Item(
                 buildings: buildings.map { $0.item },
@@ -46,7 +46,7 @@ final class ItemMapper {
             let name: String
             let description: String?
             let serialNumber: String
-            let floor: String
+            let floor: String?
             let roomNumber: String
             
             var item: Lock {
@@ -55,9 +55,9 @@ final class ItemMapper {
                     buildingId: buildingId,
                     type: type,
                     name: name,
-                    description: description ?? "",
+                    description: "",
                     serialNumber: serialNumber,
-                    floor: floor,
+                    floor: floor ?? "",
                     roomNumber: roomNumber
                 )
             }
@@ -72,7 +72,7 @@ final class ItemMapper {
                 return Group(
                     id: id,
                     name: name,
-                    description: description ?? ""
+                    description: ""
                 )
             }
         }
@@ -91,7 +91,7 @@ final class ItemMapper {
                     groupId: groupId,
                     type: type,
                     owner: owner,
-                    description: description ?? "",
+                    description: "",
                     serialNumber: serialNumber
                 )
             }
@@ -105,6 +105,7 @@ final class ItemMapper {
     private static var OK_200: Int { 200 }
     
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> Item {
+        print(String(decoding: data, as: UTF8.self))
         guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(RemoteItem.self, from: data) else {
             throw Error.invalidData
         }

@@ -67,6 +67,29 @@ final class ListViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [itemViewModel1, itemViewModel2])
     }
     
+    func test_loadItemsCompletion_doesNotAlertCurrentRenderingStateOnError() {
+        let id1 = UUID()
+        let building1 = makeBuilding(id: id1, shortCut: "a shortCut", name: "a name", description: "a description")
+        let lock1 = makeLock(id: UUID(), buildingId: id1, type: "a type", name: "a name", description: "a description", serialNumber: "a serial number", floor: "a floor", roomNumber: "a room number")
+        let group1 = makeGroup(id: UUID(), name: "a name", description: "a description")
+        let media1 = makeMedia(id: UUID(), groupId: UUID(), type: "a type", owner: "an owner", description: "a description", serialNumber: "a serial number")
+        
+        let item1 = Item(buildings: [building1], locks: [lock1], groups: [group1], media: [media1])
+        
+        let itemViewModel1 = ItemViewModel(lockName: lock1.name, buildingShortcut: building1.shortCut, floor: lock1.floor, roomNumber: lock1.roomNumber)
+        
+        
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeItemsLoading(with: item1, at: 0)
+        assertThat(sut, isRendering: [itemViewModel1])
+        
+        sut.simulateUserInitiatedResourceReload()
+        loader.completeItemsWithError(at: 1)
+        assertThat(sut, isRendering: [itemViewModel1])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ListViewController, loader: LoaderSpy) {

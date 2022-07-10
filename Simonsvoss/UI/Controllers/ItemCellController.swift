@@ -21,6 +21,12 @@ final class ItemCellController {
         cell.floorLabel.text = model.floor
         cell.roomNumberLabel.text = model.roomNumber
         
+        handleHighlightEffect(searchText, cell)
+        
+        return cell
+    }
+    
+    private func handleHighlightEffect(_ searchText: String, _ cell: ItemTableViewCell) {
         if !searchText.isEmpty {
             if let lockNameLabelText = cell.lockNameLabel.text {
                 let name = lockNameLabelText.lowercased().prefix(searchText.count)
@@ -46,7 +52,5 @@ final class ItemCellController {
                 cell.roomNumberLabel.backgroundColor = (room == searchText) ? .systemYellow : .clear
             }
         }
-        
-        return cell
     }
 }

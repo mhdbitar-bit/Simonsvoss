@@ -70,14 +70,16 @@ final class RemoteLoaderTests: XCTestCase {
     
     func test_load_deliversSuccessWithItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
+        let id1 = UUID()
         
-        let buildin1 = makeBuilding(id: UUID(), shortCut: "a shortCut", name: "a name", description: "a description")
+        let buildin1 = makeBuilding(id: id1, shortCut: "a shortCut", name: "a name", description: "a description")
         
-        let lock1 = makeLock(id: UUID(), buildingId: UUID(), type: "a type", name: "a name", description: "a description", serialNumber: "a serial number", floor: "a floor", roomNumber: "a room number")
+        let lock1 = makeLock(id: UUID(), buildingId: id1, type: "a type", name: "a name", description: "a description", serialNumber: "a serial number", floor: "a floor", roomNumber: "a room number")
         
-        let group1 = makeGroup(id: UUID(), name: "a name", description: "a description")
+        let groupId1 = UUID()
+        let group1 = makeGroup(id: groupId1, name: "a name", description: "a description")
         
-        let media1 = makeMedia(id: UUID(), groupId: UUID(), type: "a type", owner: "an owner", description: "a description", serialNumber: "a serial number")
+        let media1 = makeMedia(id: UUID(), groupId: groupId1, type: "a type", owner: "an owner", description: "a description", serialNumber: "a serial number")
         
         let item = makeItem(building: buildin1, lock: lock1, group: group1, media: media1)
         
@@ -108,7 +110,7 @@ final class RemoteLoaderTests: XCTestCase {
                 XCTAssertEqual(receivedItems.locks, expectedItems.locks, file: file, line: line)
                 XCTAssertEqual(receivedItems.groups, expectedItems.groups, file: file, line: line)
                 XCTAssertEqual(receivedItems.media, expectedItems.media, file: file, line: line)
-                
+            
             case let (.failure(receivedError), .failure(expectedError)):
                 XCTAssertEqual(receivedError as! RemoteLoader.Error, expectedError, file: file, line: line)
                 

@@ -51,8 +51,8 @@ final class ListViewControllerTests: XCTestCase {
         let item1 = Item(buildings: [building1], locks: [lock1], groups: [group1], media: [media1])
         let item2 = Item(buildings: [building1, building2], locks: [lock1, lock2], groups: [group1, group2], media: [media1, media2])
         
-        let itemViewModel1 = ItemViewModel(lockName: lock1.name, buildingShortcut: building1.shortCut, floor: lock1.floor, roomNumber: lock1.roomNumber)
-        let itemViewModel2 = ItemViewModel(lockName: lock2.name, buildingShortcut: building2.shortCut, floor: lock2.floor, roomNumber: lock2.roomNumber)
+        let itemViewModel1 = ItemViewModel(lockName: lock1.name, buildingShortcut: building1.shortCut, floor: lock1.floor, roomNumber: lock1.roomNumber, buildingName: building1.name)
+        let itemViewModel2 = ItemViewModel(lockName: lock2.name, buildingShortcut: building2.shortCut, floor: lock2.floor, roomNumber: lock2.roomNumber, buildingName: building2.name)
         
         let (sut, loader) = makeSUT()
         
@@ -76,7 +76,7 @@ final class ListViewControllerTests: XCTestCase {
         
         let item1 = Item(buildings: [building1], locks: [lock1], groups: [group1], media: [media1])
         
-        let itemViewModel1 = ItemViewModel(lockName: lock1.name, buildingShortcut: building1.shortCut, floor: lock1.floor, roomNumber: lock1.roomNumber)
+        let itemViewModel1 = ItemViewModel(lockName: lock1.name, buildingShortcut: building1.shortCut, floor: lock1.floor, roomNumber: lock1.roomNumber, buildingName: building1.name)
         
         
         let (sut, loader) = makeSUT()
@@ -132,7 +132,11 @@ final class ListViewControllerTests: XCTestCase {
 
         XCTAssertEqual(cell.lockNameLabel.text, item.lockName, "Expected lock name text to be \(String(describing: item.lockName)) for item view at index \(index)", file: file, line: line)
                 
-        XCTAssertEqual(cell.metaLabel.text, "\(item.buildingShortcut) - \(item.floor) - \(item.roomNumber)", "Expected meta items to be \(String(describing: item.buildingShortcut)), \(String(describing: item.floor)) and \(String(describing: item.roomNumber)) for item view at index \(index)", file: file, line: line)
+        XCTAssertEqual(cell.shortcutLabel.text, "\(item.buildingShortcut)", "Expected shortcut items to be \(String(describing: item.buildingShortcut)) for item view at index \(index)", file: file, line: line)
+        
+        XCTAssertEqual(cell.floorLabel.text, "\(item.floor)", "Expected floor items to be \(String(describing: item.floor)) for item view at index \(index)", file: file, line: line)
+        
+        XCTAssertEqual(cell.roomNumberLabel.text, "\(item.roomNumber)", "Expected room number items to be \(String(describing: item.roomNumber)) for item view at index \(index)", file: file, line: line)
     }
 
     class LoaderSpy: ItemLoader {

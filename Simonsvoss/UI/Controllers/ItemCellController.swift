@@ -17,7 +17,9 @@ final class ItemCellController {
     func view(_ tableView: UITableView) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.ID) as! ItemTableViewCell
         cell.lockNameLabel.text = model.lockName
-        cell.metaLabel.text = model.buildingShortcut + " - " + model.floor + " - " + model.roomNumber
+        cell.shortcutLabel.text = model.buildingShortcut
+        cell.floorLabel.text = model.floor
+        cell.roomNumberLabel.text = model.roomNumber
         return cell
     }
 }

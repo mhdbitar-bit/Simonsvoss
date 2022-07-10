@@ -31,6 +31,7 @@
 		4CC2E683287A8FD000BB1810 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E682287A8FD000BB1810 /* ListViewModel.swift */; };
 		4CC2E688287A905A00BB1810 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E686287A905A00BB1810 /* ItemTableViewCell.swift */; };
 		4CC2E689287A905A00BB1810 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC2E687287A905A00BB1810 /* TableViewCell.xib */; };
+		4CC2E68B287A931600BB1810 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68A287A931600BB1810 /* ItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		4CC2E682287A8FD000BB1810 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		4CC2E686287A905A00BB1810 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		4CC2E687287A905A00BB1810 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		4CC2E68A287A931600BB1810 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,18 +182,19 @@
 		4C6C54A72879A492009DABC8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4CC2E681287A8FBC00BB1810 /* ViewModel */,
+				4CC2E681287A8FBC00BB1810 /* ViewModels */,
 				4CC2E684287A8FD800BB1810 /* Views */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		4CC2E681287A8FBC00BB1810 /* ViewModel */ = {
+		4CC2E681287A8FBC00BB1810 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				4CC2E682287A8FD000BB1810 /* ListViewModel.swift */,
+				4CC2E68A287A931600BB1810 /* ItemViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		4CC2E684287A8FD800BB1810 /* Views */ = {
@@ -314,6 +317,7 @@
 				4CC2E688287A905A00BB1810 /* ItemTableViewCell.swift in Sources */,
 				4C6C54A22879A25B009DABC8 /* Group.swift in Sources */,
 				4C6C5489287969AE009DABC8 /* URLSessionHTTPClient.swift in Sources */,
+				4CC2E68B287A931600BB1810 /* ItemViewModel.swift in Sources */,
 				4C6C54A02879A23B009DABC8 /* Lock.swift in Sources */,
 				4C6C549C2879A1EE009DABC8 /* Item.swift in Sources */,
 				4CC2E683287A8FD000BB1810 /* ListViewModel.swift in Sources */,

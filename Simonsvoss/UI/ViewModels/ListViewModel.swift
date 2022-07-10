@@ -50,7 +50,8 @@ final class ListViewModel {
                     lockName: lock.name,
                     buildingShortcut: building.shortCut,
                     floor: lock.floor,
-                    roomNumber: lock.roomNumber
+                    roomNumber: lock.roomNumber,
+                    buildingName: building.name
                 ))
             }
         }

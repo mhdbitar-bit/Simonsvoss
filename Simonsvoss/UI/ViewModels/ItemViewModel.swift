@@ -12,4 +12,5 @@ struct ItemViewModel: Equatable {
     let buildingShortcut: String
     let floor: String
     let roomNumber: String
+    let buildingName: String
 }

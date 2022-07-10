@@ -10,6 +10,7 @@ import UIKit
 final class ResultsTableController: UITableViewController {
     
     var filteredItems = [ItemViewModel]()
+    var searchText: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,6 @@ final class ResultsTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return ItemCellController(model: filteredItems[indexPath.row]).view(tableView)
+        return ItemCellController(model: filteredItems[indexPath.row]).view(tableView, searchText: searchText)
     }
 }

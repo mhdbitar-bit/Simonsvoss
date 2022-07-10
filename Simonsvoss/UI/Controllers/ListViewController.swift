@@ -14,6 +14,7 @@ final class ListViewController: UITableViewController, Alertable {
     private var viewModel: ListViewModel!
     private var cancellables: Set<AnyCancellable> = []
     private var resultsTableController: ResultsTableController!
+    private var isSearchable: Bool = false
     
     private var items = [ItemViewModel]() {
         didSet { tableView.reloadData() }
@@ -129,6 +130,7 @@ extension ListViewController: UISearchBarDelegate {
         // Apply the filtered results to the search results table.
         if let resultsController = searchController.searchResultsController as? ResultsTableController {
             resultsController.filteredItems = filteredResults
+            resultsController.searchText = searchText.lowercased()
             resultsController.tableView.reloadData()
         }
     }

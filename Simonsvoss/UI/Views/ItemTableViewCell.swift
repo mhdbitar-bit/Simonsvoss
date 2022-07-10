@@ -8,6 +8,8 @@
 import UIKit
 
 final class ItemTableViewCell: UITableViewCell {
-    @IBOutlet var lockNameLabel: UILabel!
-    @IBOutlet var metaLabel: UILabel!
+    @IBOutlet private(set) var lockNameLabel: UILabel!
+    @IBOutlet private(set) var metaLabel: UILabel!
+    
+    static let ID = "ItemTableViewCell"
 }

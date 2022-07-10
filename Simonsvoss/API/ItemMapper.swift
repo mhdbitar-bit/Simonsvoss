@@ -55,7 +55,7 @@ final class ItemMapper {
                     buildingId: buildingId,
                     type: type,
                     name: name,
-                    description: "",
+                    description: description ?? "",
                     serialNumber: serialNumber,
                     floor: floor ?? "",
                     roomNumber: roomNumber
@@ -72,7 +72,7 @@ final class ItemMapper {
                 return Group(
                     id: id,
                     name: name,
-                    description: ""
+                    description: description ?? ""
                 )
             }
         }
@@ -91,7 +91,7 @@ final class ItemMapper {
                     groupId: groupId,
                     type: type,
                     owner: owner,
-                    description: "",
+                    description: description ?? "",
                     serialNumber: serialNumber
                 )
             }

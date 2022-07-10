@@ -1,5 +1,5 @@
 //
-//  ResultTableController.swift
+//  ResultsTableController.swift
 //  Simonsvoss
 //
 //  Created by Mohammad Bitar on 7/10/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ResultTableController: UITableViewController {
+final class ResultsTableController: UITableViewController {
     
     var filteredItems = [ItemViewModel]()
     

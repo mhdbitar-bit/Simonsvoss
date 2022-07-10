@@ -14,15 +14,7 @@ final class ListViewController: UITableViewController, Alertable {
     private var cancellables: Set<AnyCancellable> = []
     
     private var items = [ItemViewModel]() {
-        didSet {
-            if Thread.isMainThread {
-                tableView.reloadData()
-            } else {
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                }
-            }
-        }
+        didSet { tableView.reloadData() }
     }
     
     convenience init(viewModel: ListViewModel) {
@@ -63,12 +55,7 @@ final class ListViewController: UITableViewController, Alertable {
             if isLoading {
                 self?.refreshControl?.beginRefreshing()
             } else {
-                if Thread.isMainThread {
-                    self?.refreshControl?.endRefreshing()
-                }
-                DispatchQueue.main.async {
-                    self?.refreshControl?.endRefreshing()
-                }
+                self?.refreshControl?.endRefreshing()
             }
         }.store(in: &cancellables)
     }

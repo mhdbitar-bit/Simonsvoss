@@ -106,7 +106,7 @@ final class ListViewControllerTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let viewModel = ListViewModel(loader: loader)
+        let viewModel = ListViewModel(loader: MainQueueDispatchDecorator(decoratee: loader))
         let sut = ListViewController(viewModel: viewModel)
         trackForMemoryLeacks(loader, file: file, line: line)
         trackForMemoryLeacks(sut, file: file, line: line)

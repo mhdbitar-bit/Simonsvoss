@@ -35,6 +35,7 @@
 		4CC2E68E287AA21100BB1810 /* ItemCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68D287AA21100BB1810 /* ItemCellController.swift */; };
 		4CC2E691287AA3CE00BB1810 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E690287AA3CE00BB1810 /* Alertable.swift */; };
 		4CC2E693287AA50D00BB1810 /* ItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E692287AA50D00BB1810 /* ItemLoader.swift */; };
+		4CC2E695287AB9B000BB1810 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E694287AB9B000BB1810 /* MainQueueDispatchDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		4CC2E68D287AA21100BB1810 /* ItemCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellController.swift; sourceTree = "<group>"; };
 		4CC2E690287AA3CE00BB1810 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		4CC2E692287AA50D00BB1810 /* ItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoader.swift; sourceTree = "<group>"; };
+		4CC2E694287AB9B000BB1810 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				4CC2E690287AA3CE00BB1810 /* Alertable.swift */,
+				4CC2E694287AB9B000BB1810 /* MainQueueDispatchDecorator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				4C6C54A02879A23B009DABC8 /* Lock.swift in Sources */,
 				4C6C549C2879A1EE009DABC8 /* Item.swift in Sources */,
 				4CC2E691287AA3CE00BB1810 /* Alertable.swift in Sources */,
+				4CC2E695287AB9B000BB1810 /* MainQueueDispatchDecorator.swift in Sources */,
 				4CC2E683287A8FD000BB1810 /* ListViewModel.swift in Sources */,
 				4C6C54972879A135009DABC8 /* RemoteLoader.swift in Sources */,
 				4C6C54992879A1AF009DABC8 /* ItemMapper.swift in Sources */,

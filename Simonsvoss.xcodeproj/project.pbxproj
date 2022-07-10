@@ -33,6 +33,7 @@
 		4CC2E689287A905A00BB1810 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC2E687287A905A00BB1810 /* TableViewCell.xib */; };
 		4CC2E68B287A931600BB1810 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68A287A931600BB1810 /* ItemViewModel.swift */; };
 		4CC2E68E287AA21100BB1810 /* ItemCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68D287AA21100BB1810 /* ItemCellController.swift */; };
+		4CC2E691287AA3CE00BB1810 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E690287AA3CE00BB1810 /* Alertable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		4CC2E687287A905A00BB1810 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		4CC2E68A287A931600BB1810 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		4CC2E68D287AA21100BB1810 /* ItemCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellController.swift; sourceTree = "<group>"; };
+		4CC2E690287AA3CE00BB1810 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		4C6C54A72879A492009DABC8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4CC2E68F287AA3BF00BB1810 /* Helpers */,
 				4CC2E68C287AA1FF00BB1810 /* Controllers */,
 				4CC2E681287A8FBC00BB1810 /* ViewModels */,
 				4CC2E684287A8FD800BB1810 /* Views */,
@@ -216,6 +219,14 @@
 				4CC2E68D287AA21100BB1810 /* ItemCellController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4CC2E68F287AA3BF00BB1810 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4CC2E690287AA3CE00BB1810 /* Alertable.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +343,7 @@
 				4CC2E68B287A931600BB1810 /* ItemViewModel.swift in Sources */,
 				4C6C54A02879A23B009DABC8 /* Lock.swift in Sources */,
 				4C6C549C2879A1EE009DABC8 /* Item.swift in Sources */,
+				4CC2E691287AA3CE00BB1810 /* Alertable.swift in Sources */,
 				4CC2E683287A8FD000BB1810 /* ListViewModel.swift in Sources */,
 				4C6C54972879A135009DABC8 /* RemoteLoader.swift in Sources */,
 				4C6C54992879A1AF009DABC8 /* ItemMapper.swift in Sources */,

@@ -11,7 +11,7 @@ import Combine
 final class ListViewModel {
     
     let title = "Items"
-    @Published var categories: [ItemViewModel] = []
+    @Published var items: [ItemViewModel] = []
     @Published var isLoading: Bool = false
     @Published var error: String? = nil
     
@@ -29,12 +29,31 @@ final class ListViewModel {
             self.isLoading = false
             
             switch result {
-            case let .success(items):
-                // TODO handle items here
+            case let .success(item):
+                self.items = self.adapteItemToViewModel(item)
                 
             case let .failure(error):
-                // TODO handle errors here
+                self.error = error.localizedDescription
             }
         }
+    }
+    
+    /// Transform item into a representable ViewModel
+    private func adapteItemToViewModel(_ item: Item) -> [ItemViewModel] {
+        let locks = item.locks
+        let buildings = item.buildings
+        var items: [ItemViewModel] = []
+        
+        locks.forEach { lock in
+            if let building = buildings.first(where: { $0.id == lock.buildingId }) {
+                items.append(ItemViewModel(
+                    lockName: lock.name,
+                    buildingShortcut: building.shortCut,
+                    floor: lock.floor,
+                    roomNumber: lock.roomNumber
+                ))
+            }
+        }
+        return items
     }
 }

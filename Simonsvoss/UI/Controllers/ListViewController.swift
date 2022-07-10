@@ -10,8 +10,10 @@ import Combine
 
 final class ListViewController: UITableViewController, Alertable {
     
+    private var searchController: UISearchController!
     private var viewModel: ListViewModel!
     private var cancellables: Set<AnyCancellable> = []
+    private var resultsTableController: ResultsTableController!
     
     private var items = [ItemViewModel]() {
         didSet { tableView.reloadData() }
@@ -27,6 +29,19 @@ final class ListViewController: UITableViewController, Alertable {
         
         navigationItem.title = viewModel.title
         tableView.register(UINib(nibName: ItemTableViewCell.ID, bundle: nil), forCellReuseIdentifier: ItemTableViewCell.ID)
+        
+        resultsTableController = ResultsTableController()
+        
+        searchController = UISearchController(searchResultsController: resultsTableController)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search..."
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.delegate = self
+
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+        
         setupRefreshControl()
         bind()
         
@@ -38,6 +53,10 @@ final class ListViewController: UITableViewController, Alertable {
     private func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    private func setupSearchController() {
+        
     }
     
     @objc private func refresh() {
@@ -82,5 +101,33 @@ final class ListViewController: UITableViewController, Alertable {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return ItemCellController(model: items[indexPath.row]).view(tableView)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension ListViewController: UISearchBarDelegate {
+        
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchResults = items
+        let text = searchText.lowercased()
+        
+        let filteredResults = searchResults.filter { item in
+            let lockName = item.lockName.lowercased().prefix(searchText.count)
+            let shortCut = item.buildingShortcut.lowercased().prefix(searchText.count)
+            let floor = item.floor.lowercased().prefix(searchText.count)
+            let roomNumber = item.roomNumber.lowercased().prefix(searchText.count)
+            if lockName == text || shortCut == text || floor == text || roomNumber == text {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        // Apply the filtered results to the search results table.
+        if let resultsController = searchController.searchResultsController as? ResultsTableController {
+            resultsController.filteredItems = filteredResults
+            resultsController.tableView.reloadData()
+        }
     }
 }

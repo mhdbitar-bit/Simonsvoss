@@ -30,7 +30,7 @@
 		4CC2E680287A8F0800BB1810 /* ListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E67F287A8F0800BB1810 /* ListViewControllerTests.swift */; };
 		4CC2E683287A8FD000BB1810 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E682287A8FD000BB1810 /* ListViewModel.swift */; };
 		4CC2E688287A905A00BB1810 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E686287A905A00BB1810 /* ItemTableViewCell.swift */; };
-		4CC2E689287A905A00BB1810 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC2E687287A905A00BB1810 /* TableViewCell.xib */; };
+		4CC2E689287A905A00BB1810 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CC2E687287A905A00BB1810 /* ItemTableViewCell.xib */; };
 		4CC2E68B287A931600BB1810 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68A287A931600BB1810 /* ItemViewModel.swift */; };
 		4CC2E68E287AA21100BB1810 /* ItemCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E68D287AA21100BB1810 /* ItemCellController.swift */; };
 		4CC2E691287AA3CE00BB1810 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E690287AA3CE00BB1810 /* Alertable.swift */; };
@@ -74,7 +74,7 @@
 		4CC2E67F287A8F0800BB1810 /* ListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTests.swift; sourceTree = "<group>"; };
 		4CC2E682287A8FD000BB1810 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		4CC2E686287A905A00BB1810 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
-		4CC2E687287A905A00BB1810 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		4CC2E687287A905A00BB1810 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		4CC2E68A287A931600BB1810 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		4CC2E68D287AA21100BB1810 /* ItemCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellController.swift; sourceTree = "<group>"; };
 		4CC2E690287AA3CE00BB1810 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				4CC2E686287A905A00BB1810 /* ItemTableViewCell.swift */,
-				4CC2E687287A905A00BB1810 /* TableViewCell.xib */,
+				4CC2E687287A905A00BB1810 /* ItemTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C6C545E28795C7C009DABC8 /* LaunchScreen.storyboard in Resources */,
-				4CC2E689287A905A00BB1810 /* TableViewCell.xib in Resources */,
+				4CC2E689287A905A00BB1810 /* ItemTableViewCell.xib in Resources */,
 				4C6C545B28795C7C009DABC8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

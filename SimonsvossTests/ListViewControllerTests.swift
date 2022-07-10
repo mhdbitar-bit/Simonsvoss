@@ -19,6 +19,22 @@ final class ListViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 3, "Expected yet another loading request once user initiates another reload")
     }
     
+    func test_loadItemsActions_isVisibleWhileLoadingItems() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
+        
+        loader.completeItemsLoading(at: 0)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once loading completes successfuly")
+        
+        sut.simulateUserInitiatedResourceReload()
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once user initiates a reload")
+        
+        loader.completeBooksWithError(at: 1)
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading completes with error")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ListViewController, loader: LoaderSpy) {
@@ -42,6 +58,15 @@ final class ListViewControllerTests: XCTestCase {
         func load(completion: @escaping (Result) -> Void) {
             completions.append(completion)
         }
+        
+        func completeItemsLoading(with item: Item = Item(buildings: [], locks: [], groups: [], media: []), at index: Int = 0) {
+            completions[index](.success(item))
+        }
+        
+        func completeBooksWithError(at index: Int = 0) {
+            let error = NSError(domain: "an error", code: 0)
+            completions[index](.failure(error))
+        }
     }
 }
 
@@ -49,6 +74,10 @@ private extension UITableViewController {
 
     func simulateUserInitiatedResourceReload() {
         refreshControl?.simulatePullToRefresh()
+    }
+    
+    var isShowingLoadingIndicator: Bool {
+        return refreshControl?.isRefreshing == true
     }
 }
 

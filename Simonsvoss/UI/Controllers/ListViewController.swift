@@ -113,11 +113,13 @@ extension ListViewController: UISearchBarDelegate {
         let text = searchText.lowercased()
         
         let filteredResults = searchResults.filter { item in
-            let lockName = item.lockName.lowercased().prefix(searchText.count)
-            let shortCut = item.buildingShortcut.lowercased().prefix(searchText.count)
-            let floor = item.floor.lowercased().prefix(searchText.count)
-            let roomNumber = item.roomNumber.lowercased().prefix(searchText.count)
-            if lockName == text || shortCut == text || floor == text || roomNumber == text {
+            let lockName = item.lockName.lowercased().prefix(text.count)
+            let shortCut = item.buildingShortcut.lowercased().prefix(text.count)
+            let floor = item.floor.lowercased().prefix(text.count)
+            let roomNumber = item.roomNumber.lowercased().prefix(text.count)
+            let buildingName = item.buildingName.lowercased().prefix(text.count)
+            
+            if lockName == text || shortCut == text || floor == text || roomNumber == text || buildingName == text {
                 return true
             } else {
                 return false

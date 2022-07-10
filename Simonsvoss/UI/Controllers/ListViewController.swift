@@ -14,7 +14,6 @@ final class ListViewController: UITableViewController, Alertable {
     private var viewModel: ListViewModel!
     private var cancellables: Set<AnyCancellable> = []
     private var resultsTableController: ResultsTableController!
-    private var isSearchable: Bool = false
     
     private var items = [ItemViewModel]() {
         didSet { tableView.reloadData() }
@@ -28,21 +27,11 @@ final class ListViewController: UITableViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = viewModel.title
+        resultsTableController = ResultsTableController()
         tableView.register(UINib(nibName: ItemTableViewCell.ID, bundle: nil), forCellReuseIdentifier: ItemTableViewCell.ID)
         
-        resultsTableController = ResultsTableController()
-        
-        searchController = UISearchController(searchResultsController: resultsTableController)
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search..."
-        searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.delegate = self
-
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
-        
+        setupSearchController()
+        setupNavigationController()
         setupRefreshControl()
         bind()
         
@@ -51,18 +40,34 @@ final class ListViewController: UITableViewController, Alertable {
         }
     }
     
+    private func setupNavigationController() {
+        navigationItem.title = viewModel.title
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+    }
+    
     private func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     private func setupSearchController() {
-        
+        searchController = UISearchController(searchResultsController: resultsTableController)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search..."
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchBar.delegate = self
     }
     
     @objc private func refresh() {
         viewModel.loadItems()
     }
+}
+
+// MARK: - Binded functions
+
+extension ListViewController {
     
     private func bind() {
         bindLoading()
@@ -95,7 +100,11 @@ final class ListViewController: UITableViewController, Alertable {
             }
         }.store(in: &cancellables)
     }
-    
+}
+
+// MARK: - UITableView
+
+extension ListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -108,12 +117,18 @@ final class ListViewController: UITableViewController, Alertable {
 // MARK: - UISearchBarDelegate
 
 extension ListViewController: UISearchBarDelegate {
-        
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let searchResults = items
-        let text = searchText.lowercased()
-        
-        let filteredResults = searchResults.filter { item in
+        let filteredResults = findMatches(items, searchText.lowercased())
+        reloadFilteredItems(filteredResults, searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+    }
+    
+    private func findMatches(_ searchResults: [ItemViewModel], _ text: String) -> [ItemViewModel] {
+        return searchResults.filter { item in
             let lockName = item.lockName.lowercased().prefix(text.count)
             let shortCut = item.buildingShortcut.lowercased().prefix(text.count)
             let floor = item.floor.lowercased().prefix(text.count)
@@ -126,8 +141,9 @@ extension ListViewController: UISearchBarDelegate {
                 return false
             }
         }
-        
-        // Apply the filtered results to the search results table.
+    }
+    
+    private func reloadFilteredItems(_ filteredResults: [ItemViewModel], _ searchText: String) {
         if let resultsController = searchController.searchResultsController as? ResultsTableController {
             resultsController.filteredItems = filteredResults
             resultsController.searchText = searchText.lowercased()
